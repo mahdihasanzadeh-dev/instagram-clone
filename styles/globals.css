@@ -3,6 +3,6 @@
 @tailwind utilities;
 @layer components {
   .btn{
-    @apply w-6 h-6 shrink-0 cursor-pointer
+    @apply w-6 h-6 shrink-0 cursor-pointer hover:scale-125 transition-all duration-150 ease-out
   }  
 }
