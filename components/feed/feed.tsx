@@ -12,7 +12,7 @@ export function Feed(): ReactElement {
         <Posts />
       </section>
       <section className="hidden xl:inline-grid md:col-span-1">
-        <div className="fixed top-20">
+        <div className="fixed top-20 mt-4 ml-10">
           <MiniProfil />
           <Suggestions />
         </div>
