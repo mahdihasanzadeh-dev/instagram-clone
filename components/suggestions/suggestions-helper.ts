@@ -8,7 +8,7 @@ export function suggestionsHelper(setSuggestions: ISetState<ISuggestionsState[]>
       userId: faker.datatype.uuid(),
       username: faker.internet.userName(),
       avatar: faker.image.avatar(),
-      company: faker.company.companyName(),
+      company: faker.company.name(),
     })));
   }
 

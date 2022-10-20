@@ -72,7 +72,12 @@
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/promise-function-async": "error",
     "@typescript-eslint/no-misused-new": "error",
-    "@typescript-eslint/no-misused-promises": "error",
+    "@typescript-eslint/no-misused-promises": [
+        "error",
+        {
+          "checksVoidReturn": false
+        }
+    ],
     "@typescript-eslint/await-thenable": "error",
     // Require await section.
     // -

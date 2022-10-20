@@ -2,3 +2,5 @@
 /node_modules
 /next.config.js
 /tailwind.config.js
+/pages/api/auth/*
+/firebase.js
