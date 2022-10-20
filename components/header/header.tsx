@@ -33,10 +33,10 @@ export function Header(): ReactElement {
           />
         </div>
         <div className="flex space-x-5">
-          <div className="btn hidden sm:flex">
+          <div className="nav-btn hidden sm:flex">
             <Image src={homeIcon} alt="homeIcon" />
           </div>
-          <div className="btn hidden sm:flex relative">
+          <div className="nav-btn hidden sm:flex relative">
             <Image src={messageIcon} alt="messageIcon" />
             <div
               className="absolute flex -top-1 left-3.5 items-center justify-center bg-red-500 text-white w-4 h-4 rounded-full text-xs"
@@ -44,17 +44,17 @@ export function Header(): ReactElement {
               1
             </div>
           </div>
-          <div className="btn">
+          <div className="nav-btn">
             <Image src={uploadIcon} alt="uploadIcon" />
           </div>
-          <div className="btn hidden sm:flex">
+          <div className="nav-btn hidden sm:flex">
             <Image src={discoverIcon} alt="discoverIcon" />
           </div>
-          <div className="btn hidden sm:flex">
+          <div className="nav-btn hidden sm:flex">
             <Image src={heartIcon} alt="heartIcon" />
           </div>
           <div className="flex">
-            <div className="btn mr-5">
+            <div className="nav-btn mr-5">
               <Image src={profileIcon} alt="profileIcon" className="rounded-full" />
             </div>
             <button

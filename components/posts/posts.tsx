@@ -5,7 +5,7 @@ import { posts } from './posts-helper';
 
 export function Posts(): ReactElement {
   return (
-    <div>
+    <>
       {
         posts.map((post:IPost) => {
           const { id, username, postPhoto, profilePhoto, caption } = post;
@@ -21,6 +21,6 @@ export function Posts(): ReactElement {
           );
         })
       }
-    </div>
+    </>
   );
 }

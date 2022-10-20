@@ -15,7 +15,7 @@ export function Stories(): ReactElement {
   return (
     <div>
       <div
-        className="flex space-x-4 bg-white border overflow-x-scroll rounded-lg mx-1 scrollbar-thin scrollbar-thumb-gray-300 p-5"
+        className="flex space-x-4 bg-white border overflow-x-scroll rounded-lg  scrollbar-thin scrollbar-thumb-gray-300 p-5"
       >
         {
           stories.map((profile: IStoriesState) => {
