@@ -12,9 +12,12 @@ import discoverIcon from '@assets/images/discover.png';
 import heartIcon from '@assets/images/heart.png';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { modalState } from '@atoms/modal-atom/modal-atom';
 
 export function Header(): ReactElement {
   const { data: session } = useSession();
+  const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
   const router = useRouter();
 
   return (
@@ -56,8 +59,11 @@ export function Header(): ReactElement {
                   1
                 </div>
               </div>
-              <div className="nav-btn">
-                <Image src={uploadIcon} alt="uploadIcon" />
+              <div role="button" className="nav-btn" onClick={() => setIsOpen(true)}>
+                <Image
+                  src={uploadIcon}
+                  alt="uploadIcon"
+                />
               </div>
               <div className="nav-btn hidden sm:flex">
                 <Image src={discoverIcon} alt="discoverIcon" />

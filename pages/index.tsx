@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { SEO } from '@components/seo/seo';
 import { Feed } from '@components/feed/feed';
+import { Modal } from '@components/modal/modal';
 
 const Home: NextPage = () => (
   <>
@@ -10,6 +11,7 @@ const Home: NextPage = () => (
       keywords={['instagram', 'nextjs', 'tailwind']}
     />
     <Feed />
+    <Modal />
   </>
 );
 
