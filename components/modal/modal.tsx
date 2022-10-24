@@ -5,11 +5,13 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '@atoms/modal-atom/modal-atom';
 import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/outline';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import type { IModalState } from './modal-interface';
 import { modalHelper } from './modal-helper';
 
 export function Modal():ReactElement {
+  const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
 
   const [state, setState] = useState<IModalState>({
@@ -17,11 +19,11 @@ export function Modal():ReactElement {
     isLoading: false,
   });
 
-  const { selectedFile } = state;
+  const { selectedFile, isLoading } = state;
   const filePicker = useRef<null | HTMLInputElement>(null);
   const captionRef = useRef<null | HTMLInputElement>(null);
 
-  const helper = modalHelper(state, setState, captionRef, filePicker);
+  const helper = modalHelper(state, setState, captionRef, filePicker, session, setIsOpen);
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -119,12 +121,13 @@ export function Modal():ReactElement {
                   <div className="mt-5 sm:mt-6">
                     <button
                       type="button"
+                      disabled={!!((selectedFile === null || selectedFile === undefined))}
                       className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2
                     bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2
                       focus:ring-offset-2 focus:ring-red-500 sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300"
                       onClick={helper.uploadPost}
                     >
-                      Upload Post
+                      {isLoading ? 'Uploading' : 'Upload Post'}
                     </button>
                   </div>
                 </div>
