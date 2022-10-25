@@ -11,16 +11,18 @@ import {
 // import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 import type { IPost } from './post-interface';
 
-export function Post({ id, username, postPhoto, profilePhoto, caption }: IPost): ReactElement {
+export function Post({ username, image, caption, profileImg }: IPost): ReactElement {
   return (
     <div className="bg-white my-7 border rounded-md">
       {/* header-start */}
       <div className="flex items-center p-5">
         <div className="rounded-full h-12 w-12 object-contain border p-1 mr-3">
           <Image
-            src={profilePhoto}
-            alt={id}
+            src={profileImg}
+            alt={username}
             className="rounded-full"
+            width={48}
+            height={48}
           />
         </div>
         <p className="flex-1 font-semibold">{username}</p>
@@ -29,9 +31,13 @@ export function Post({ id, username, postPhoto, profilePhoto, caption }: IPost):
       {/* header-end */}
       {/* img-start */}
       <Image
-        src={postPhoto}
+        src={image}
         alt={username}
         className=" object-cover w-full"
+        width="100%"
+        height="100%"
+        layout="responsive"
+        objectFit="cover"
       />
       {/* img-end */}
       {/* buttons-start */}

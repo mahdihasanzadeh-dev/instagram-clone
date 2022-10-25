@@ -15,6 +15,8 @@ export function Suggestion({ userId, username, avatar, company }: ISuggestionsSt
           className="rounded-full "
           width={40}
           height={40}
+          layout="responsive"
+          objectFit="cover"
         />
       </div>
       <div className="flex-1 ml-4">

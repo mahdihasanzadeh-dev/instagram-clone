@@ -1,9 +1,6 @@
-import type { StaticImageData } from 'next/image';
-
 export interface IPost {
-    id: string;
+    image: string;
     username: string;
-    postPhoto: StaticImageData ;
-    profilePhoto: StaticImageData ;
     caption: string;
+    profileImg: string;
 }

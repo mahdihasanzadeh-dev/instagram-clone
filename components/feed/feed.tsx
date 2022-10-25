@@ -1,3 +1,4 @@
+import type { IHomeProperties } from '@common/common-interface';
 import { MiniProfil } from '@components/mini-profile/mini-profile';
 import { Posts } from '@components/posts/posts';
 import { Stories } from '@components/stories/stories';
@@ -5,7 +6,7 @@ import { Suggestions } from '@components/suggestions/suggestions';
 import { useSession } from 'next-auth/react';
 import type { ReactElement } from 'react';
 
-export function Feed(): ReactElement {
+export function Feed({ posts }: IHomeProperties): ReactElement {
   const { data: session } = useSession();
 
   return (
@@ -14,7 +15,7 @@ export function Feed(): ReactElement {
     >
       <section className="col-span-2">
         <Stories />
-        <Posts />
+        <Posts posts={posts} />
       </section>
       {
         session && (

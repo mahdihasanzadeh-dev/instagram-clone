@@ -12,6 +12,8 @@ export function Story({ username, avatar }: IStoryProperties): ReactElement {
           width={64}
           height={64}
           className="rounded-full"
+          layout="responsive"
+          objectFit="cover"
         />
       </div>
 

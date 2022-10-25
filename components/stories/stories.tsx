@@ -23,7 +23,7 @@ export function Stories(): ReactElement {
           session && (
           <Story
             avatar={session.user?.image ?? ''}
-            username={session.user?.username ?? 'profile'}
+            username={session.user?.name ?? 'profile'}
           />
           )
         }

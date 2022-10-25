@@ -3,7 +3,7 @@ import { SEO } from '@components/seo/seo';
 import type { ClientSafeProvider, LiteralUnion } from 'next-auth/react';
 import { getProviders, signIn } from 'next-auth/react';
 import type { BuiltInProviderType } from 'next-auth/providers';
-import type { ISigninProperties } from './signin-interface';
+import type { ISigninProperties } from '@common/common-interface';
 
 const Signin = ({ providers }: ISigninProperties) => (
   <div className="flex items-center justify-center h-screen">
@@ -18,7 +18,7 @@ const Signin = ({ providers }: ISigninProperties) => (
         <button
           key={provider.name}
           type="button"
-          onClick={async () => signIn(provider.id, {callbackUrl: '/' })}
+          onClick={async () => signIn(provider.id, { callbackUrl: '/' })}
           className="px-6 py-3 mt-4 font-semibold text-white bg-blue-400 border-1 border-white rounded-md shadow outline-none hover:border-blue-400 focus:outline-none"
         >
           Sign in with

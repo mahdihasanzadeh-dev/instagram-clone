@@ -10,10 +10,12 @@ export function MiniProfil(): ReactElement {
       <div className="border p-[2px] rounded-full w-16 h-16">
         <Image
           src={session?.user?.image ?? ''}
-          alt={session?.user?.username ?? 'username'}
+          alt={session?.user?.name ?? 'username'}
           className="rounded-full "
           width={64}
           height={64}
+          layout="responsive"
+          objectFit="cover"
         />
       </div>
       <div className="flex-1 mx-4">
