@@ -10,8 +10,9 @@ export async function getPosts(): Promise<DocumentData[]> {
   const posts : DocumentData[] = [];
 
   for (const post of postsSnapshot.docs) {
+    const { id } = post;
     const { caption, profileImg, image, username } = post.data();
-    posts.push({ caption, profileImg, image, username });
+    posts.push({ id, caption, profileImg, image, username });
   }
 
   return posts;

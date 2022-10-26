@@ -1,5 +1,4 @@
 import type { ReactElement } from 'react';
-import { useId } from 'react';
 import type { IHomeProperties } from '@common/common-interface';
 import { Post } from '@components/post/post';
 import type { IPost } from '@components/post/post-interface';
@@ -9,12 +8,12 @@ export function Posts({ posts }: IHomeProperties): ReactElement {
     <>
       {
         posts.map((post:IPost) => {
-          const { username, image, caption, profileImg } = post;
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const id = useId();
+          const { id, username, image, caption, profileImg } = post;
+
           return (
             <Post
               key={id}
+              id={id}
               username={username}
               image={image}
               caption={caption}
