@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+import Image from 'next/image';
 import type { ReactElement } from 'react';
 import { useRef, Fragment, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -6,13 +7,15 @@ import { modalState } from '@atoms/modal-atom/modal-atom';
 import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/outline';
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
+import { postsState } from '@atoms/posts-atom/posts-atom';
+import type { IPost } from '@components/post/post-interface';
 import type { IModalState } from './modal-interface';
 import { modalHelper } from './modal-helper';
 
 export function Modal():ReactElement {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState<boolean>(modalState);
+  const [postsData, setPostsData] = useRecoilState<IPost[]>(postsState);
 
   const [state, setState] = useState<IModalState>({
     selectedFile: null,
@@ -23,7 +26,7 @@ export function Modal():ReactElement {
   const filePicker = useRef<null | HTMLInputElement>(null);
   const captionRef = useRef<null | HTMLInputElement>(null);
 
-  const helper = modalHelper(state, setState, captionRef, filePicker, session, setIsOpen);
+  const helper = modalHelper(state, setState, captionRef, filePicker, session, setIsOpen, postsData, setPostsData);
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>

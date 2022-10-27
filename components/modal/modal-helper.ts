@@ -4,6 +4,7 @@ import type { DocumentData, DocumentReference } from 'firebase/firestore/lite';
 import { addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore/lite';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import type { SetterOrUpdater } from 'recoil';
+import type { IPost } from '@components/post/post-interface';
 import type { IModalState } from './modal-interface';
 import { db, storage } from '../../firebase';
 
@@ -14,6 +15,8 @@ export function modalHelper(
   filePicker: MutableRefObject<HTMLInputElement | null>,
   session: ISession | null,
   setIsOpen: SetterOrUpdater<boolean>,
+  postsData: IPost[],
+  setPostsData: SetterOrUpdater<IPost[]>,
 ) {
   function addImageToPost(event: ChangeEvent<HTMLInputElement>): void {
     const reader: FileReader = new FileReader();
@@ -65,9 +68,10 @@ export function modalHelper(
       // console.log('New doc added with ID', docRef.id);
 
       const imageRef = ref(storage, `posts/${docRef.id}/image`);
+      let downloadUrl: string = '';
 
       await uploadString(imageRef, selectedFile as string, 'data_url').then(async () => {
-        const downloadUrl: string = await getDownloadURL(imageRef);
+        downloadUrl = await getDownloadURL(imageRef);
 
         await updateDoc(doc(db, 'posts', docRef.id), {
           image: downloadUrl,
@@ -75,6 +79,14 @@ export function modalHelper(
       }).catch((error) => console.log(error));
 
       setIsOpen(false);
+
+      setPostsData([{
+        id: docRef.id,
+        username: session?.user?.username ?? '',
+        caption: captionRef.current?.value ?? '',
+        profileImg: session?.user?.image ?? '',
+        image: downloadUrl,
+      }, ...postsData]);
 
       setState({
         isLoading: false,

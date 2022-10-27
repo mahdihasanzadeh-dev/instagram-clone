@@ -5,7 +5,7 @@ import { collection, getDocs, orderBy } from 'firebase/firestore/lite';
 import { db } from '../firebase';
 
 export async function getPosts(): Promise<DocumentData[]> {
-  const postsCol = query(collection(db, 'posts'), orderBy('timestamp', 'asc'));
+  const postsCol = query(collection(db, 'posts'), orderBy('timestamp', 'desc'));
   const postsSnapshot = await getDocs(postsCol);
   const posts : DocumentData[] = [];
 
